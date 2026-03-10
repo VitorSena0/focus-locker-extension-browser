@@ -2,7 +2,7 @@
 <img width="1024" height="1024" alt="focus-locker-logo" src="https://github.com/user-attachments/assets/66f0f120-3b4e-40e6-85bd-a4390a4414ac" />
 
 <br></br>
-Extensão WebExtension (Manifest V3) para `Chrome`, `Edge` e `Firefox` que:
+Extensão WebExtension (Manifest V3) para `Chrome`, `Edge` e `Firefox` (melhor compatibilidade com o chrome) que:
 
 - Bloqueia qualquer site fora da whitelist durante sessão de foco.
 - Conta tempo apenas com atividade real (aba permitida ativa + janela focada + interação recente).
