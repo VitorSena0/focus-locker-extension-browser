@@ -15,6 +15,11 @@ Extensão WebExtension (Manifest V3) para `Chrome`, `Edge` e `Firefox` (melhor c
 - Exige confirmação no popup para liberar navegação até meia-noite local.
 - Exporta/importa configurações + histórico em JSON.
 
+  <img width="293" height="506" alt="Captura de tela de 2026-03-10 19-56-14" src="https://github.com/user-attachments/assets/ba0f6dc1-15ac-43b9-9f14-aee528259d27" />
+  <img width="293" height="506" alt="Captura de tela de 2026-03-10 19-56-43" src="https://github.com/user-attachments/assets/d785070c-a096-4131-9a8f-15e332150e8f" />
+  <img width="293" height="506" alt="Captura de tela de 2026-03-10 19-56-50" src="https://github.com/user-attachments/assets/dcf4f6d8-5ff6-4b89-bf73-256c9cb4e2ac" />
+
+
 ## Estrutura
 
 - `manifest.json`: declaração da extensão.
