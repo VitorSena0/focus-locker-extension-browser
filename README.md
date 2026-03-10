@@ -61,6 +61,4 @@ Em navegadores pessoais, extensões não conseguem impedir 100% que o próprio u
 A extensão aplica bloqueio técnico dentro das APIs disponíveis e exibe aviso transparente sobre esse limite.
 
 ## Limitações conhecidas
-
-- A janela externa tenta ficar sempre à frente, mas alguns navegadores podem ignorar essa opção.
 - Alguns vídeos do YouTube não permitem reprodução embutida; use o link de fallback quando ocorrer.
