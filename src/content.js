@@ -255,12 +255,15 @@
             resize: none;
             overflow: hidden;
             max-width: 560px;
-            max-height: 420px;
+            max-height: 70vh;
+            display: flex;
+            flex-direction: column;
           }
           .box.maximized {
             resize: both;
             min-width: 240px;
-            min-height: 20px;
+            min-height: 120px;
+            max-height: 80vh;
           }
           .box.minimized {
             width: 12px;
@@ -484,6 +487,11 @@
           }
           .box.minimized .content {
             display: none;
+          }
+          .content {
+            overflow: auto;
+            flex: 1;
+            min-height: 0;
           }
           .state-running {
             color: #86efac;
