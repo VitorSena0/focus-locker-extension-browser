@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Focus Lock</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="brand">
+        <img class="logo" src="../focus-locker-logo.png" alt="Logo do Focus Lock" />
+        <div>
+          <h1>Focus Lock</h1>
+          <p class="subtitle">Sessão de foco com whitelist e punição por atraso</p>
+        </div>
+      </header>
+
+      <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+
+      <section class="panel status-panel">
+        <h2>Status</h2>
+        <p><strong>Estado:</strong> <span id="session-status">-</span></p>
+        <p><strong>Acompanhamento:</strong> <span id="display-mode">Popup da extensão</span></p>
+        <p><strong>Tempo restante:</strong> <span id="remaining-time">00:00:00</span></p>
+        <p><strong>Tempo extra (punição):</strong> <span id="penalty-added">00:00:00</span></p>
+        <p><strong>Pausa manual restante:</strong> <span id="pause-left">00:00:00</span></p>
+        <p>
+          <strong>Tempo em inatividade:</strong>
+          <span id="idle-time" class="idle-timer">00:00:00</span>
+        </p>
+      </section>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="focus">Foco</button>
+        <button class="tab-btn" data-tab="music">Música</button>
+        <button class="tab-btn" data-tab="help">Como usar</button>
+      </div>
+
+      <div id="tab-focus" class="tab-content active">
+        <section class="panel">
+          <h2>Configuração pré-sessão</h2>
+
+          <label for="whitelist-input">Whitelist (1 domínio por linha)</label>
+          <textarea
+            id="whitelist-input"
+            placeholder="youtube.com\ndocs.google.com"
+            rows="4"
+          ></textarea>
+
+          <div class="grid-2">
+            <label>
+              Duração do foco (min)
+              <input id="focus-duration" type="number" min="1" max="480" />
+            </label>
+            <label>
+              Limite pausa manual (min)
+              <input id="pause-limit" type="number" min="0" max="120" />
+            </label>
+          </div>
+
+          <label>
+            Pausa por inatividade após (min)
+            <input id="idle-timeout-minutes" type="number" min="0.5" max="10" step="0.5" />
+          </label>
+          <p class="hint-text">
+            A pausa por inatividade é aplicada quando a página perde foco ou ao ultrapassar esse tempo
+            sem interação.
+          </p>
+
+          <div class="external-apps">
+            <label for="external-app-name">Apps externos (manual)</label>
+            <div class="external-app-input">
+              <input id="external-app-name" type="text" placeholder="Ex.: VS Code" />
+              <button id="add-external-app" class="btn">Adicionar</button>
+            </div>
+            <div id="external-app-list" class="external-app-list"></div>
+          <p class="hint-text">
+            Ative o controle deslizante durante a sessão para indicar uso de app externo.
+          </p>
+          </div>
+
+          <label class="toggle-row">
+            <input id="penalty-enabled" type="checkbox" />
+            <span>Ativar punição por atraso na volta do foco (somente pausa por inatividade)</span>
+          </label>
+
+          <button id="save-config" class="btn">Salvar configuração</button>
+        </section>
+
+        <section class="panel actions-panel">
+          <h2>Ações</h2>
+          <div class="actions-grid">
+            <button id="start-session" class="btn primary">Iniciar foco</button>
+            <button id="toggle-pause" class="btn">Pausar/Retomar</button>
+            <button id="confirm-unlock" class="btn success">Confirmar liberação do dia</button>
+            <button id="export-data" class="btn">Exportar JSON</button>
+          </div>
+
+          <button id="toggle-display-mode" class="btn">Mostrar visor</button>
+
+          <div id="start-choice" class="start-choice hidden">
+            <p id="start-choice-text">
+              Como você quer acompanhar esta sessão de foco?
+            </p>
+            <div class="actions-grid">
+              <button id="start-with-popup" class="btn">Usar popup</button>
+              <button id="start-with-overlay" class="btn primary">Usar visor</button>
+            </div>
+            <button id="cancel-start-choice" class="btn">Cancelar</button>
+          </div>
+
+          <label for="import-file" class="btn file-btn">Importar JSON</label>
+          <input id="import-file" type="file" accept="application/json" hidden />
+        </section>
+
+      </div>
+
+      <div id="tab-music" class="tab-content">
+        <section class="panel">
+          <h2>Playlist/Música</h2>
+          <label for="music-url">Link do YouTube Music ou YouTube</label>
+          <input id="music-url" type="url" placeholder="https://music.youtube.com/playlist?list=..." />
+          <p class="hint-text">
+            Cole o link de uma playlist ou música. O player será exibido no visor flutuante.
+          </p>
+          <div class="actions-grid">
+            <button id="save-music" class="btn primary">Salvar música</button>
+            <button id="clear-music" class="btn">Limpar</button>
+          </div>
+        </section>
+      </div>
+
+      <div id="tab-help" class="tab-content">
+        <section class="panel help-panel">
+          <h2>Comece aqui</h2>
+          <ol class="help-list">
+            <li><strong>Whitelist:</strong> adicione os domínios permitidos.</li>
+            <li><strong>Defina tempos:</strong> duração do foco, pausa manual e limite de inatividade.</li>
+            <li><strong>Inicie:</strong> escolha acompanhar pelo popup ou pelo visor.</li>
+            <li><strong>Finalize:</strong> confirme a liberação do dia no popup.</li>
+          </ol>
+        </section>
+
+        <section class="panel help-panel">
+          <h2>O que conta como foco</h2>
+          <ul class="help-list">
+            <li><strong>Conta tempo:</strong> aba permitida ativa, navegador em foco e interação recente.</li>
+            <li><strong>Pausa por inatividade:</strong> página fora de foco, navegador sem foco ou sem interação pelo tempo configurado.</li>
+            <li><strong>Visor:</strong> mostra o tempo restante, inatividade e punição acumulada.</li>
+          </ul>
+        </section>
+
+        <section class="panel help-panel">
+          <h2>Pausas e punição</h2>
+          <ul class="help-list">
+            <li><strong>Pausa manual:</strong> consome o limite configurado e não gera punição.</li>
+            <li>
+              <strong>Punição (opcional):</strong> em inatividade por página fora de foco ou sem interação,
+              cada minuto completo adiciona +1 min ao restante, até 30 min.
+            </li>
+            <li><strong>Apps externos ativos:</strong> ignoram inatividade automática e continuam contando foco.</li>
+          </ul>
+          <p class="help-note">
+            A punição não é aplicada quando a inatividade é apenas por navegador sem foco ou app externo ativo.
+          </p>
+        </section>
+
+        <section class="panel help-panel">
+          <h2>Acompanhamento</h2>
+          <ul class="help-list">
+            <li><strong>Popup:</strong> ideal para ajustes rápidos e comandos.</li>
+            <li><strong>Visor:</strong> overlay na página; pode ser minimizado, movido e redimensionado quando expandido.</li>
+            <li><strong>Janela externa:</strong> aparece automaticamente quando houver app externo ativo.</li>
+          </ul>
+        </section>
+
+        <section class="panel help-panel">
+          <h2>Recursos opcionais</h2>
+          <h3>Apps externos (manual)</h3>
+          <p>Cadastre apps externos e ative o controle deslizante quando estiver usando um deles.</p>
+          <p>Enquanto ativos, o foco continua contando e o visor padrão vira janela externa.</p>
+          <h3>Música</h3>
+          <p>Na aba Música, cole um link do YouTube Music ou YouTube (playlist ou música) para o visor flutuante.</p>
+          <p>O player é único por vez: se estiver em outra aba, clique em “Assumir player”.</p>
+        </section>
+
+        <section class="panel help-panel">
+          <h2>Dados e portabilidade</h2>
+          <p>Importar/Exportar JSON mantém suas configurações e histórico.</p>
+        </section>
+
+        <section class="panel help-panel">
+          <h2>Limitações e dicas</h2>
+          <ul class="help-list">
+            <li>O bloqueio depende das permissões do navegador e não impede 100% desinstalação/desativação.</li>
+            <li>A janela externa tenta ficar sempre à frente, mas alguns navegadores podem ignorar isso.</li>
+            <li>Se algo não atualizar, feche e reabra o popup. O visor é atualizado automaticamente.</li>
+          </ul>
+        </section>
+
+        <section class="panel warning-panel">
+          <h2>Anti-burla</h2>
+          <p id="anti-tamper-msg">
+            Bloqueio técnico + aviso claro: não é possível impedir 100% que o próprio usuário
+            desinstale/desative a extensão em navegador pessoal.
+          </p>
+          <ul id="integrity-list"></ul>
+        </section>
+      </div>
+    </main>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "manifest_version": 2,
+  "name": "Focus Lock",
+  "version": "1.0.0",
+  "description": "Bloqueia sites fora da whitelist durante sessões de foco com validação de atividade real.",
+  "permissions": ["storage", "tabs", "alarms", "<all_urls>"],
+  "background": {
+    "scripts": ["src/background-compat.js"]
+  },
+  "browser_action": {
+    "default_title": "Focus Lock",
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "focus-locker-logo.png",
+      "32": "focus-locker-logo.png",
+      "48": "focus-locker-logo.png",
+      "128": "focus-locker-logo.png"
+    }
+  },
+  "icons": {
+    "16": "focus-locker-logo.png",
+    "32": "focus-locker-logo.png",
+    "48": "focus-locker-logo.png",
+    "128": "focus-locker-logo.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    "src/block.html",
+    "src/block.css",
+    "src/block.js",
+    "focus-locker-logo.png"
+  ],
+  "incognito": "not_allowed",
+  "content_security_policy": "script-src 'self'; object-src 'self'; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://music.youtube.com"
+}

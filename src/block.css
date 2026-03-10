@@ -1,0 +1,139 @@
+:root {
+  --bg0: #071326;
+  --bg1: #0b2545;
+  --panel: #102a43;
+  --line: #3e5c76;
+  --ink: #f0f4f8;
+  --soft: #9fb3c8;
+  --accent: #f0b429;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  background: radial-gradient(circle at 20% 20%, #1f4068 0%, var(--bg0) 45%),
+    linear-gradient(180deg, var(--bg1), var(--bg0));
+  color: var(--ink);
+}
+
+.layout {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.card {
+  width: min(720px, 100%);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 24px;
+  background: linear-gradient(170deg, rgb(16 42 67 / 0.95), rgb(7 19 38 / 0.95));
+  box-shadow: 0 20px 30px rgb(0 0 0 / 0.2);
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.brand h1 {
+  margin: 0;
+}
+
+.logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #0b132b;
+  object-fit: cover;
+}
+
+.subtitle {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  color: var(--soft);
+}
+
+p {
+  margin: 8px 0;
+  color: var(--soft);
+}
+
+strong {
+  color: var(--accent);
+}
+
+dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.card dl div {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px;
+  background: rgb(15 43 69 / 0.5);
+}
+
+dt {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--soft);
+}
+
+dd {
+  margin: 4px 0 0;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.idle-timer {
+  color: #f87171;
+  font-weight: 700;
+}
+
+.idle-timer.idle-off {
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+button {
+  border: 1px solid #8da9c4;
+  border-radius: 10px;
+  background: #102a43;
+  color: var(--ink);
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #193a59;
+}
+
+.hint {
+  margin-top: 16px;
+  font-size: 0.86rem;
+}

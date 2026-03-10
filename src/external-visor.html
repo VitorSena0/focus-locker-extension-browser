@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Focus Lock | Apps externos</title>
+    <link rel="stylesheet" href="external-visor.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="brand">
+        <img class="logo" src="../focus-locker-logo.png" alt="Logo do Focus Lock" />
+        <div>
+          <h1>Focus Lock</h1>
+          <p class="subtitle">Apps externos ativos</p>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="time" id="remaining">00:00:00</div>
+        <div class="status-row">
+          <span class="label">Estado</span>
+          <span class="value" id="status">-</span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Apps externos</h2>
+        <div id="external-apps"></div>
+      </section>
+
+    </main>
+
+    <script type="module" src="external-visor.js"></script>
+  </body>
+</html>

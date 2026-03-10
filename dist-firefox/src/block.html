@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Site bloqueado</title>
+    <link rel="stylesheet" href="block.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <section class="card">
+        <div class="brand">
+          <img class="logo" src="../focus-locker-logo.png" alt="Logo do Focus Lock" />
+          <div>
+            <h1>Navegação bloqueada</h1>
+            <p class="subtitle">Focus Lock</p>
+          </div>
+        </div>
+        <p>
+          Este domínio não está na sua whitelist de foco:
+          <strong id="blocked-domain">-</strong>
+        </p>
+        <p id="status-text">Carregando estado...</p>
+
+        <dl>
+          <div>
+            <dt>Tempo restante</dt>
+            <dd id="remaining">00:00:00</dd>
+          </div>
+          <div>
+            <dt>Punição acumulada</dt>
+            <dd id="penalty">00:00:00</dd>
+          </div>
+          <div>
+            <dt>Pausa manual restante</dt>
+            <dd id="manual-pause">00:00:00</dd>
+          </div>
+          <div>
+            <dt>Tempo em inatividade</dt>
+            <dd id="idle-time" class="idle-timer">00:00:00</dd>
+          </div>
+        </dl>
+
+        <div class="actions">
+          <button id="pause-btn">Pausar/Retomar</button>
+          <button id="reload-btn">Tentar novamente</button>
+        </div>
+
+        <p class="hint">
+          Anti-burla transparente: a extensão bloqueia o que é possível tecnicamente, mas nenhum navegador pessoal
+          permite impedir 100% a desinstalação/desativação pelo próprio usuário.
+        </p>
+      </section>
+    </main>
+
+    <script type="module" src="block.js"></script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "focus-lock-extension",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "firefox:dev": "bash scripts/build-firefox.sh"
+  }
+}
