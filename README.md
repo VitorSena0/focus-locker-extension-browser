@@ -22,7 +22,8 @@ Extensão WebExtension (Manifest V3) para `Chrome`, `Edge` e `Firefox` (melhor c
 
 ## Bloqueio
 
-  <img width="841" height="543" alt="Captura de tela de 2026-03-10 20-25-47" src="https://github.com/user-attachments/assets/e3bd90dc-972c-41a0-baa4-5f83f653658a" />
+ <img width="841" height="543" alt="Captura de tela de 2026-03-10 20-27-15" src="https://github.com/user-attachments/assets/ef42e193-0e17-4bb6-a622-918ab8224e7b" />
+
 
 
 ## Estrutura
