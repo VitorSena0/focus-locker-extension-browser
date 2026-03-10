@@ -20,6 +20,11 @@ Extensão WebExtension (Manifest V3) para `Chrome`, `Edge` e `Firefox` (melhor c
   <img width="293" height="506" alt="Captura de tela de 2026-03-10 19-56-50" src="https://github.com/user-attachments/assets/dcf4f6d8-5ff6-4b89-bf73-256c9cb4e2ac" />
 
 
+## Bloqueio
+
+  <img width="841" height="543" alt="Captura de tela de 2026-03-10 20-25-47" src="https://github.com/user-attachments/assets/e3bd90dc-972c-41a0-baa4-5f83f653658a" />
+
+
 ## Estrutura
 
 - `manifest.json`: declaração da extensão.
